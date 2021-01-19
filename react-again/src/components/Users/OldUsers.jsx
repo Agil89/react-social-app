@@ -1,28 +1,19 @@
 import s from './Users.module.css'
+import * as axios from 'axios'
 
-
-let Users = (props) =>{
-
-    let pageCount=Math.ceil(props.usersCount / props.usersForEachPage)
-    let pages = []
-
-    for (let i = 1;i<=pageCount;i++){
-        pages.push(i)
- 
+let OldUsers = (props) =>{
+    let getUsers = () =>{
+        if (props.users.length === 0){
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
+                props.setUsers(response.data.items)
+            console.log(response.data.items)
+        })
+        }
     }
-
-
-
+    
     return (    
         <div>
-            <span>
-                {
-                    pages.map(p =>{
-                        return <span className={props.currentPage === p && s.selectedPage }
-                         onClick={() =>{ props.onPageChanged(p) }}>{p}</span>
-                    })
-                }
-            </span>
+            <button onClick={getUsers}>get users</button>
         {
             props.users.map(u =>
                 <div className={s.mainDiv} key={u.id}>
@@ -53,4 +44,5 @@ let Users = (props) =>{
     )
 }
 
-export default Users;
+
+export default OldUsers;

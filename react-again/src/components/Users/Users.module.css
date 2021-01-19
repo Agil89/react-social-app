@@ -37,3 +37,6 @@
     background-color: aqua;
     border:none;
 }
+.selectedPage{
+    font-weight: bold;
+}
