@@ -16,8 +16,8 @@ import React from 'react';
 
 
 const Dialogs = (props) =>{
-    let FullMessages = props.fullData.messages.map(elem=><Message message={elem.message} />)
-    let FullDialogs = props.fullData.dialogs.map(elem=><Dialog pathUrl={elem.pathUrl} nameUrl={elem.nameUrl} />)
+    let FullMessages = props.fullData.messages.map(elem=><Message message={elem.message} id={elem.id} key={elem.id}/>)
+    let FullDialogs = props.fullData.dialogs.map(elem=><Dialog pathUrl={elem.pathUrl} key={elem.id} nameUrl={elem.nameUrl} />)
     
     let answer = () =>{
         props.answer();

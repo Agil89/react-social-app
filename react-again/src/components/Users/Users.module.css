@@ -1,0 +1,39 @@
+.mainDiv{
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    padding: 50px;
+    justify-content: center;
+}
+.profileAva{
+    width: 100px;
+}
+.secondDiv{
+    border: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: aliceblue;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.locationInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.firstDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.followBtn{
+    padding: 8px 25px;
+    border-radius: 5px;
+    background-color: aqua;
+    border:none;
+}

@@ -1,0 +1,14 @@
+.allFriends{
+    display:flex;
+    justify-content: space-around;  
+    align-items: center;
+  }
+  .friendAva{
+    width: 40px;
+  }
+  .friend{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

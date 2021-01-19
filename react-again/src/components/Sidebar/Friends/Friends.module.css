@@ -1,21 +1,12 @@
-.allFriends{
-    display:flex;
-    justify-content: space-around;  
-    align-items: center;
-  }
-  .friendAva{
-    width: 40px;
-  }
-  .friend{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+
   .friendText{
     justify-content: center;
     display: flex;
     padding: 15px 0px;
     color: white;
     font-weight: bold;
+  }
+  .AllFriends{
+    display: flex;
+    justify-content: space-around;
   }

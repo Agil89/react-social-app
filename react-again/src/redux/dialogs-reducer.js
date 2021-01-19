@@ -6,32 +6,31 @@ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
 let initialState = {
     messages:[
-        {message:'HI how are you?'},
-        {message:'Its a good day'},
-        {message:'Nice to meet you'}],
+        {id:1,message:'HI how are you?'},
+        {id:2,message:'Its a good day'},
+        {id:3,message:'Nice to meet you'}],
     newMessage:'',
     dialogs: [
-        {pathUrl:'1',nameUrl:'Aqil'},
-        {pathUrl:'2',nameUrl:'Eli'},
-        {pathUrl:'3',nameUrl:'Elman'}]
+        {id:1,pathUrl:'1',nameUrl:'Aqil'},
+        {id:2,pathUrl:'2',nameUrl:'Eli'},
+        {id:3,pathUrl:'3',nameUrl:'Elman'}]
 }
 
 const dialogsReducer = (state = initialState,action) =>{
     switch(action.type){
         case ADD_MESSAGE:{
-            let newMessage = {
-                message:state.newMessage
+            let newMessage = state.newMessage
+            return {
+                ...state,
+                newMessage: '',
+                messages : [...state.messages,{id:10,message:newMessage}]
             }
-            let stateCopy = {...state}
-            stateCopy.messages = [...state.messages]
-            stateCopy.messages.push(newMessage)
-            stateCopy.newMessage = ''
-            return stateCopy;
         }
         case UPDATE_NEW_MESSAGE_TEXT:
-            let stateCopy = {...state}
-            stateCopy.newMessage = action.newMessage;
-            return stateCopy;
+            return {
+                ...state,
+                newMessage: action.newMessage
+            }
         default:
             return state;
 
