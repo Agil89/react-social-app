@@ -1,7 +1,7 @@
-import { usersAPI } from "../api/api"
+import { Redirect } from "react-router-dom"
+import { authAPI, usersAPI } from "../api/api"
 
 const SET_USER_DATA = 'SET_USER_DATA'
-const CHANGE_USER_STATUS='CHANGE_USER_STATUS'
 
 
 let initialState = {
@@ -16,31 +16,44 @@ const authReducer = (state = initialState,action) =>{
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.payload
             }
-        case CHANGE_USER_STATUS:
-            return {
-                ...state,isAuth:true
-            }
+       
         default:
             return state;
 
     }
 }
-export const setUserData = (userId,email,login) =>({type:'SET_USER_DATA',data:{userId,email,login}})
+const setUserData = (userId,email,login,isAuth) =>({type:'SET_USER_DATA',payload:{userId,email,login,isAuth}})
 
-export const changeUserStatus = () =>({type:'CHANGE_USER_STATUS'})
 
 export const getUsersData = () =>{
     return (dispatch) =>{
         usersAPI.getUserData().then(data=>{
-            let {id,email,login} = data.data
-            dispatch(setUserData(id,email,login))
             if (data.resultCode === 0){
-                dispatch(changeUserStatus())
+                let {id,email,login} = data.data
+                dispatch(setUserData(id,email,login,true))
             }
         })
 }
+}
+export const authoriseMe = (formData) =>(dispatch) =>{
+    authAPI.authorise(formData).then(response=>{
+        console.log(response.data)
+        if (response.data.resultCode === 0){
+        //    let userId = response.data.data.userId
+            dispatch(getUsersData())
+        }
+    })
+
+}
+export const logout = () => (dispatch) =>{
+    authAPI.logout().then(response =>{
+        if(response.data.resultCode === 0){
+            dispatch(setUserData(null,null,null,false))
+            console.log('dsfdsf')
+        }
+    })
 }
 
 export default authReducer;

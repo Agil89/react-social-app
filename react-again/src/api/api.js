@@ -1,4 +1,5 @@
 import * as axios from 'axios'
+import { logout } from '../redux/auth-reducer'
 
 
 const instance = axios.create({
@@ -45,5 +46,15 @@ export const profileAPI ={
     },
     updateStatus(status){
         return instance.put(`profile/status`,{status:status})
+    }
+}
+
+export const authAPI ={
+    authorise(formData){
+        return instance.post(`auth/login`,{email:formData.email,
+            password:formData.password,rememberMe:formData.rememberMe})
+    },
+    logout(){
+        return instance.delete('auth/login')
     }
 }
