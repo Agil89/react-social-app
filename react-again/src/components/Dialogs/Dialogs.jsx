@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import Dialog from './Dialog/Dialog';
 import s from './Dialogs.module.css'
 import Message from './Message/Message';
@@ -26,6 +26,7 @@ const Dialogs = (props) =>{
         let answerText = e.target.value
         props.updateMessage(answerText)
     }
+
 
     return (
         <div className={s.allDialogs}>
