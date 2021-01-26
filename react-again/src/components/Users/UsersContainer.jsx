@@ -1,11 +1,10 @@
 import { connect } from "react-redux"
 import { follow, setCurrentPage, setUsers, unfollow, setUsersCount, changeIsFetching, followingToggle, getUsers, getUsersWithSettingPage } from "../../redux/user-reducer"
-// import Users from "./OldUsers"
 import React from 'react'
 import Users from "./Users"
 import Preloader from "../common/Preloader"
-import { usersAPI } from "../../api/api"
 import { compose } from "redux"
+import { currentPageSelector, followingInProgresSelector, getUsersSelector, isFetchingSelector, usersCountSelector, usersForEachPageSelector } from "../../redux/users-selectors"
 
 
 class UsersC extends React.Component{
@@ -38,12 +37,12 @@ class UsersC extends React.Component{
 
 let mapStateToProps = (state) =>{
     return {
-        users:state.usersPage.users,
-        usersForEachPage:state.usersPage.usersForEachPage,
-        usersCount:state.usersPage.usersCount,
-        currentPage:state.usersPage.currentPage,
-        isFetching:state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users:getUsersSelector(state),
+        usersForEachPage:usersForEachPageSelector(state),
+        usersCount:usersCountSelector(state),
+        currentPage:currentPageSelector(state),
+        isFetching:isFetchingSelector(state),
+        followingInProgress: followingInProgresSelector(state)
     }
 }
 // let mapDispatchToProps = (dispatch) =>{
