@@ -1,12 +1,12 @@
 import { profileAPI, usersAPI } from "../api/api"
 
-const ADD_POST = 'ADD-POST'
+const ADD_POST = 'my-app/profile/ADD-POST'
 
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_POST_TEXT = 'my-app/profile/UPDATE-NEW-POST-TEXT'
 
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_USER_PROFILE = 'my-app/profile/SET_USER_PROFILE'
 
-const SET_STATUS = 'SET_STATUS'
+const SET_STATUS = 'my-app/profile/SET_STATUS'
 
 let initialState = {
     posts: [
@@ -41,13 +41,13 @@ const profileReducer = (state = initialState,action) =>{
 }
 // export const addPostActionCreator = () =>({type:'ADD-POST'})
 
-export const updateNewPostActionCreator = (text) =>({type:'UPDATE-NEW-POST-TEXT',newText:text})
+export const updateNewPostActionCreator = (text) =>({type:'my-app/profile/UPDATE-NEW-POST-TEXT',newText:text})
 
-export const setUserProfile = (profile) =>({type:'SET_USER_PROFILE', profile})
+export const setUserProfile = (profile) =>({type:'my-app/profile/SET_USER_PROFILE', profile})
 
-export const setStatus = (status) =>({type:'SET_STATUS',status})
+export const setStatus = (status) =>({type:'my-app/profile/SET_STATUS',status})
 
-export const addPost = (myPost) => ({type:'ADD-POST',myPost})
+export const addPost = (myPost) => ({type:'my-app/profile/ADD-POST',myPost})
 
 export const getProfile = (userId) =>{
     return (dispatch) =>{
@@ -58,19 +58,19 @@ export const getProfile = (userId) =>{
 }
 
 export const getProfileStatus = (userId) =>{
-    return (dispatch) =>{
-        profileAPI.getStatus(userId).then(response=>{
+    return async (dispatch) =>{
+        let response = await profileAPI.getStatus(userId)
+        if (response){
             dispatch(setStatus(response.data))
-        })
+        }
     }
 }
 
-export const updateStatus = (status) => (dispatch)=>{
-    profileAPI.updateStatus(status).then(response=>{
+export const updateStatus = (status) => async (dispatch)=>{
+    let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
         }
-    })
 }
 
 

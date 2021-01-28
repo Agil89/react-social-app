@@ -8,6 +8,8 @@ import { currentPageSelector, followingInProgresSelector, getUsersSelector, isFe
 
 
 class UsersC extends React.Component{
+
+    totalCount = 0
     componentDidMount(){
         this.props.getUsers(this.props.currentPage,this.props.usersForEachPage)
     }

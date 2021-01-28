@@ -1,0 +1,23 @@
+.selectedPage{
+    font-weight: bold;
+}
+.paginator {
+    margin:10px
+}
+.pageNumber {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 15px;
+}
+.pageNumber.selectedPage{
+    font-weight: bold;
+    border-color: black;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    width: 20px;
+}
+.parentOfSpan{
+    display: flex;
+    flex-flow: row;
+}

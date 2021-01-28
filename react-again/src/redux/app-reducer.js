@@ -1,6 +1,6 @@
 import { getUsersData } from "./auth-reducer";
 
-const SUCCESS_INITIALIZED = 'SUCCESS_INITIALIZED'
+const SUCCESS_INITIALIZED = 'my-app/app/SUCCESS_INITIALIZED'
 
 
 
@@ -21,14 +21,12 @@ const appReducer = (state = initialState,action) =>{
 
     }
 }
-export const initizializeMe = () =>({type:'SUCCESS_INITIALIZED'})
+export const initizializeMe = () =>({type:'my-app/app/SUCCESS_INITIALIZED'})
 
-export const initializeApp = () => (dispatch) =>{
+export const initializeApp = () => async (dispatch) =>{
     let promise = dispatch(getUsersData())
-    Promise.all([promise]).then(() =>{
-        dispatch(initizializeMe())
-    })
-
+    let result = await Promise.all([promise])
+       if (result){dispatch(initizializeMe())} 
 }
 
 

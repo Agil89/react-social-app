@@ -1,5 +1,5 @@
 
-const ADD_DIALOG = 'ADD_DIALOG'
+const ADD_DIALOG = 'my-app/dialogs/ADD_DIALOG'
 
 let initialState = {
     messages:[
@@ -28,6 +28,6 @@ const dialogsReducer = (state = initialState,action) =>{
     }
 }
 
-export const addDialog = (myDialog) =>({type:'ADD_DIALOG',myDialog})
+export const addDialog = (myDialog) =>({type:'my-app/dialogs/ADD_DIALOG',myDialog})
 
 export default dialogsReducer;
